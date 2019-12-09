@@ -7,7 +7,7 @@ endif
 all: main.o
 	$(CC) -o output main.o
 
-main.o: main.c
+main.o: main.c main.h
 	$(CC) -c main.c
 
 run:
