@@ -8,16 +8,15 @@
 void printDir(){
 	char cwd[1024];
 	getcwd(cwd, sizeof(cwd));
-	printf("\nDirectory: %s", cwd);
+	printf("\nDirectory: %s ", cwd);
 }
 
-char ** parse_args( char * line ){
+char ** parse( char * line, char * delimiter){
   char * curr = line;
   char ** args = malloc(100);
-  const char *delimiters = " \t\n";
   int x;
   for (x = 0; curr != NULL; x++){
-    args[x] = strsep (&curr, delimiters);
+    args[x] = strsep (&curr, delimiter);
   }
   return args;
 }
@@ -39,11 +38,16 @@ void execArgs(char ** args){
 int main(){
 	char input[512];
 	char ** args;
+	char ** cmds;
 	while (1){
 		printDir();
 		fgets(input, 512, stdin);
 		input[strlen(input)-1] = 0;
-		args = parse_args(input);
-		execArgs(args);
+		cmds = parse(input, ";");
+		int i;
+		for (i = 0; cmds[i] != NULL; i ++){
+			args = parse(cmds, " ");
+			execArgs(args);
+		}
 	}
 }
