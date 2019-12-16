@@ -28,7 +28,6 @@ void execArgs(char ** args){
 	}
 	else if (pid == 0){
 		execvp(args[0], args);
-		exit()
 	}
 	else{
 		wait(NULL);
