@@ -4,11 +4,11 @@ else
 	CC = gcc
 endif
 
-all: shell.o
-	$(CC) -o output shell.o
+all: main.o
+	$(CC) -o output main.o
 
-main.o: shell.c shell.h
-	$(CC) -c shell.c
+main.o: main.c
+	$(CC) -c main.c
 
 run:
 	./output
