@@ -25,10 +25,10 @@ char ** parse_args( char * line ){
 void execArgs(char ** args){
 	int pid = fork();
 	if (pid == -1){
-		printf("\n Failed Fork")
+		printf("\n Failed Fork");
 	}
 	elseif (pid == 0){
-		execvp(args[0], args)
+		execvp(args[0], args);
 	}
 	else{
 		wait(NULL);
