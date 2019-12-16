@@ -28,6 +28,7 @@ void execArgs(char ** args){
 	}
 	else if (pid == 0){
 		execvp(args[0], args);
+		exit()
 	}
 	else{
 		wait(NULL);
@@ -46,7 +47,7 @@ int main(){
 		cmds = parse(input, ";");
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
-			args = parse(cmds[i], " ");
+			args = parse(cmds[i], "");
 			execArgs(args);
 		}
 	}
