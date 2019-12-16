@@ -27,7 +27,7 @@ void execArgs(char ** args){
 	if (pid == -1){
 		printf("\n Failed Fork");
 	}
-	elseif (pid == 0){
+	else if (pid == 0){
 		execvp(args[0], args);
 	}
 	else{
