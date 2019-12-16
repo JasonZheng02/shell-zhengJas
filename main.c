@@ -46,7 +46,7 @@ int main(){
 		cmds = parse(input, ";");
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
-			args = parse(cmds, " ");
+			args = parse(cmds[i], " ");
 			execArgs(args);
 		}
 	}
