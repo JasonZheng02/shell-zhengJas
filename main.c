@@ -12,25 +12,17 @@ void printDir(){
 	printf("\nDirectory: %s ", cwd);
 }
 
-char * remove_spaces(char * input){
-	if (isspace(input[0])){
-		input++;
-	}
-	if (isspace(input[strlen(input) - 1])){  
-		input[strlen(input) - 1] = 0;
-	}
-	return input;
-}
-
 char ** parse( char * line, char * delimiter){
-  char * curr = line;
-  char ** args = malloc(256);
-  remove_spaces(curr);
-  int x;
-  for (x = 0; curr != NULL; x++){
-    args[x] = strsep (&curr, delimiter);
-  }
-  return args;
+	char * curr = line;
+	char ** args = malloc(256);
+	if (isspace(curr[0])){
+		curr++;
+	}
+	int x;
+	for (x = 0; curr != NULL; x++){
+		args[x] = strsep (&curr, delimiter);
+	}
+	return args;
 }
 
 void execArgs(char ** args){
