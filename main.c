@@ -11,12 +11,27 @@ void printDir(){
 	printf("\nDirectory: %s ", cwd);
 }
 
+char * remove_spaces(char * str){
+	while(*str == ' '){
+		str++;
+	}
+	char * end = str + strlen(str) -1;
+	while(end > str && *end == ' '){
+		end--;
+	}
+	*(end + 1) = '\0';
+	return str;
+}
+
 char ** parse( char * line, char * delimiter){
   char * curr = line;
-  char ** args = malloc(100);
+  char ** args = malloc(sizeof(line));
+  char * token;
   int x;
   for (x = 0; curr != NULL; x++){
-    args[x] = strsep (&curr, delimiter);
+    args[x] = malloc(512);
+	token = remove_spaces(strsep (&curr, delimiter));
+	strncpy(args[x], token, 32);
   }
   return args;
 }
@@ -74,21 +89,33 @@ void execPipedArgs(char** args, char** parsedargs) {
 
 int main(){
 	char input[512];
-	char ** args;
 	char ** cmds;
-	char ** parsed;
+	char ** args;
 	while (1){
 		printDir();
 		fgets(input, 512, stdin);
 		input[strlen(input) - 1] = 0;
-		cmds = parse(input, ";");
+		if(strstr(input, ">") != NULL){
+			printf("\n>");
+			// redir(input);
+		} 
+		if (strstr(input, "|") != NULL){
+			printf("\n|");
+			// pipe(input);
+		} 
+		if (strstr(input, ";") != NULL){
+			cmds = parse_args(input, ";");
+		}
 		int i;
-		for (i = 0; cmds[i] != NULL; i ++){
-			char ** cmd;
-			cmd[i] = cmds[i];
-			args = parse(cmds[i], " ");
-			parsed = parse(cmd[i], "|");
-			execPipedArgs(args, parsed);
+		for (int i = 0; cmds[i] != NULL; i++){
+			if(strstr(cmds[i], ">") != NULL || strstr(cmds[i], "<") != NULL){
+				printf("\n>>>");
+				// redir(cmds[i]);
+			}
+			else{
+				args = parse(cmds[i], " ");
+				execArgs(args);
+			}
 		}
 	}
 }
