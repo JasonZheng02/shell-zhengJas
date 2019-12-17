@@ -104,7 +104,7 @@ int main(){
 			// pipe(input);
 		} 
 		if (strstr(input, ";") != NULL){
-			cmds = parse_args(input, ";");
+			cmds = parse(input, ";");
 		}
 		int i;
 		for (int i = 0; cmds[i] != NULL; i++){
