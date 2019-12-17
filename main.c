@@ -91,9 +91,9 @@ int main(){
 		if (strstr(input, ";") != NULL){
 			cmds = parse(input, ";");
 		}
-		args = parse(input, " ");
 		int i;
 		for (int i = 0; args[i] != NULL; i++){
+			args = parse(input, " ");
 			execArgs(args);
 		}
 	}
