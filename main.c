@@ -18,9 +18,6 @@ char ** parse( char * line, char * delimiter){
 	if (isspace(curr[0])){
 		curr++;
 	}
-	if (isspace(curr[strlen(curr) - 1])){
-		curr[strlen(curr) - 1] = 0;
-	}
 	int x;
 	for (x = 0; curr != NULL; x++){
 		args[x] = strsep (&curr, delimiter);
