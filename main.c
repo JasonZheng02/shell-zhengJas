@@ -86,7 +86,7 @@ int main(){
 		for (i = 0; cmds[i] != NULL; i ++){
 			args = parse(cmds[i], " ");
 			parsed = parse(cmds[i], "|");
-			execPipedArgs(args, parsed));
+			execPipedArgs(args, parsed);
 		}
 	}
 }
