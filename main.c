@@ -99,7 +99,7 @@ int main(){
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
 			args = parse(cmds[i], " ");
-			if (ifPipe(input, args) == 1){
+			if (ifPipe(input, args) == 0){
 				execPipedArgs(args, args);
 			}
 			else{
