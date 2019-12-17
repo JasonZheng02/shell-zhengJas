@@ -12,13 +12,13 @@ void printDir(){
 }
 
 char * remove_spaces(char * input){
-	if (strcmp(input[0], " ") == 0){
+	if (input[0] == 32) {
 		input++;
 	}
-	if (strcmp(input[strlen(input) - 1], " ") == 0){
+	if (input[strlen(input) - 1] == 32){
 		input[strlen(input) - 1] = 0;
 	}
-	return &input;
+	return input;
 }
 
 char ** parse( char * line, char * delimiter){
@@ -89,10 +89,11 @@ int main(){
 	while (1){
 		printDir();
 		fgets(input, 512, stdin);
-		input = remove_spaces(input);
+		input[strlen(input) - 1] = 0;
 		cmds = parse(input, ";");
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
+			cmds[i] = remove_spaces(cmds[i]);
 			args = parse(cmds[i], "-");
 			execArgs(args);
 		}
