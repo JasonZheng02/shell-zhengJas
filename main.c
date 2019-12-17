@@ -47,42 +47,42 @@ void execArgs(char ** args){
 	return;
 }
 
-void execPipedArgs(char** args, char** parsedargs) { 
-    int fds[2];  
-    int pid1, pid2; 
-	int READ = 0;
-	int WRITE = 1;
+// void execPipedArgs(char** args, char** parsedargs) { 
+    // int fds[2];  
+    // int pid1, pid2; 
+	// int READ = 0;
+	// int WRITE = 1;
   
-    if (pipe(fds) < 0){ 
-        printf("\nPipe failed"); 
-    }
-    pid1 = fork();
-    if (pid1 < 0){ 
-        printf("\n Failed Fork"); 
-    } 
-    if (pid1 == 0){ 
-        close(fds[READ]); 
-        dup2(fds[WRITE], STDOUT_FILENO); 
-        close(fds[WRITE]); 
-		execvp(args[0], args);
-    } 
-	else{ 
-        pid2 = fork(); 
-        if (pid2 < 0){ 
-            printf("\nFailed Fork"); 
-        } 
-        if (pid2 == 0){ 
-            close(fds[WRITE]); 
-            dup2(fds[READ], STDIN_FILENO); 
-            close(fds[READ]); 
-            execvp(parsedargs[0], args);
-        } 
-		else{ 
-			wait(NULL); 
-            wait(NULL); 
-        } 
-    } 
-}
+    // if (pipe(fds) < 0){ 
+        // printf("\nPipe failed"); 
+    // }
+    // pid1 = fork();
+    // if (pid1 < 0){ 
+        // printf("\n Failed Fork"); 
+    // } 
+    // if (pid1 == 0){ 
+        // close(fds[READ]); 
+        // dup2(fds[WRITE], STDOUT_FILENO); 
+        // close(fds[WRITE]); 
+		// execvp(args[0], args);
+    // } 
+	// else{ 
+        // pid2 = fork(); 
+        // if (pid2 < 0){ 
+            // printf("\nFailed Fork"); 
+        // } 
+        // if (pid2 == 0){ 
+            // close(fds[WRITE]); 
+            // dup2(fds[READ], STDIN_FILENO); 
+            // close(fds[READ]); 
+            // execvp(parsedargs[0], args);
+        // } 
+		// else{ 
+			// wait(NULL); 
+            // wait(NULL); 
+        // } 
+    // } 
+// }
 
 int main(){
 	char input[512];
