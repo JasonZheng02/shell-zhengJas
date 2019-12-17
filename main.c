@@ -93,10 +93,8 @@ int main(){
 		cmds = parse(input, ";");
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
-			printf("\n%s",cmds[i]);
 			cmds[i] = remove_spaces(cmds[i]);
-			printf("\n%s",cmds[i]);
-			args = parse(cmds[i], "-");
+			args = parse(cmds[i], "");
 			execArgs(args);
 		}
 	}
