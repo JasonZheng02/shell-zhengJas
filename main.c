@@ -90,7 +90,6 @@ int main(){
 		} 
 		if (strstr(input, ";") != NULL){
 			cmds = parse(input, ";");
-			}
 		}
 		else{
 			cmds = parse(input, "");
