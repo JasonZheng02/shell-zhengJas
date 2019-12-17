@@ -52,7 +52,7 @@ void execPipedArgs(char** args, char** parsedargs) {
         close(fds[READ]); 
         dup2(fds[WRITE], STDOUT_FILENO); 
         close(fds[WRITE]); 
-		execvp(args[0], args)
+		execvp(args[0], args);
     } 
 	else{ 
         pid2 = fork(); 
@@ -63,7 +63,7 @@ void execPipedArgs(char** args, char** parsedargs) {
             close(fds[WRITE]); 
             dup2(fds[READ], STDIN_FILENO); 
             close(fds[READ]); 
-            execvp(parsedargs[0], args)
+            execvp(parsedargs[0], args);
         } 
 		else{ 
 			wait(NULL); 
@@ -100,8 +100,11 @@ int main(){
 		for (i = 0; cmds[i] != NULL; i ++){
 			args = parse(cmds[i], " ");
 			if (ifPipe(input, args) == 1){
-				execPipedArgs
-			execArgs(args);
+				execPipedArgs(args, args);
+			}
+			else{
+				execArgs(args);
+			}
 		}
 	}
 }
