@@ -93,7 +93,7 @@ int main(){
 			// pipe(input);
 		} 
 		if (strstr(input, ";") != NULL){
-			cmds = parse(input, ";");
+			cmds = parse(input, " ;");
 		}
 		else{
 			cmds = parse(input, "");
