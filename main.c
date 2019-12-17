@@ -13,13 +13,13 @@ void printDir(){
 }
 
 char * remove_spaces(char * input){
-	int i;
-	for (i = 0; i < strlen(input); i++){
-		if (isspace(input[i])){
-			input[i] = 0;
-		}
+	if (isspace(input[0])){
+		input++
 	}
-	return input;
+	if (isspace(input[strlen(input) - 1]){  
+		input[strlen(input) - 1] = 0;
+	}
+	return input
 }
 
 char ** parse( char * line, char * delimiter){
@@ -108,7 +108,7 @@ int main(){
 		}
 		int i;
 		for (int i = 0; cmds[i] != NULL; i++){
-			args = parse(input, "");
+			args = parse(input, " ");
 			execArgs(args);
 		}
 	}
