@@ -16,7 +16,7 @@ char * remove_spaces(char * input){
 	if (isspace(input[0])){
 		input++;
 	}
-	if (isspace(input[strlen(input) - 1]){  
+	if (isspace(input[strlen(input) - 1])){  
 		input[strlen(input) - 1] = 0;
 	}
 	return input;
