@@ -25,7 +25,7 @@ char * remove_spaces(char * input){
 char ** parse( char * line, char * delimiter){
 	char * curr = line;
 	char ** args = malloc(256);
-	remove_spaces(curr);
+	curr = remove_spaces(curr);
 	int x;
 	for (x = 0; curr != NULL; x++){
 		args[x] = strsep (&curr, delimiter);
