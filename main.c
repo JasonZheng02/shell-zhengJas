@@ -70,22 +70,7 @@ void execPipedArgs(char** args, char** parsedargs) {
             wait(NULL); 
         } 
     } 
-} 
-
-int ifPipe(char* str, char** strpiped){ 
-    int i; 
-    for (i = 0; i < 2; i++) { 
-        strpiped[i] = strsep(&str, "|"); 
-        if (strpiped[i] == NULL) 
-            break; 
-    } 
-  
-    if (strpiped[1] == NULL) 
-        return 0;
-    else { 
-        return 1; 
-    } 
-} 
+}
 
 int main(){
 	char input[512];
@@ -99,12 +84,7 @@ int main(){
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
 			args = parse(cmds[i], " ");
-			if (ifPipe(input, args) == 0){
-				execPipedArgs(args, args);
-			}
-			else{
-				execArgs(args);
-			}
+			execArgs(args);
 		}
 	}
 }
