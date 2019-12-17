@@ -11,27 +11,12 @@ void printDir(){
 	printf("\nDirectory: %s ", cwd);
 }
 
-char * remove_spaces(char * str){
-	while(*str == ' '){
-		str++;
-	}
-	char * end = str + strlen(str) -1;
-	while(end > str && *end == ' '){
-		end--;
-	}
-	*(end + 1) = '\0';
-	return str;
-}
-
 char ** parse( char * line, char * delimiter){
   char * curr = line;
-  char ** args = malloc(256);
-  char * token;
+  char ** args = malloc(100);
   int x;
   for (x = 0; curr != NULL; x++){
-    args[x] = malloc(512);
-	token = remove_spaces(strsep (&curr, delimiter));
-	strncpy(args[x], token, 32);
+    args[x] = strsep (&curr, delimiter);
   }
   return args;
 }
@@ -106,16 +91,10 @@ int main(){
 		if (strstr(input, ";") != NULL){
 			cmds = parse(input, ";");
 		}
+		args = parse(input, " ");
 		int i;
-		for (int i = 0; cmds[i] != NULL; i++){
-			if(strstr(cmds[i], ">") != NULL || strstr(cmds[i], "<") != NULL){
-				printf("\n>>>");
-				// redir(cmds[i]);
-			}
-			else{
-				args = parse(cmds[i], " ");
-				execArgs(args);
-			}
+		for (int i = 0; args[i] != NULL; i++){
+			execArgs(args);
 		}
 	}
 }
