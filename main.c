@@ -25,7 +25,7 @@ char * remove_spaces(char * str){
 
 char ** parse( char * line, char * delimiter){
   char * curr = line;
-  char ** args = malloc(sizeof(line));
+  char ** args = malloc(256);
   char * token;
   int x;
   for (x = 0; curr != NULL; x++){
