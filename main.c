@@ -108,7 +108,7 @@ int main(){
 		}
 		int i;
 		for (int i = 0; cmds[i] != NULL; i++){
-			args = parse(input, " ");
+			args = parse(input, "");
 			execArgs(args);
 		}
 	}
