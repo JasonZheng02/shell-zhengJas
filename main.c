@@ -4,6 +4,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 #include <sys/wait.h>
+#include <ctype.h>
 
 void printDir(){
 	char cwd[1024];
@@ -11,9 +12,20 @@ void printDir(){
 	printf("\nDirectory: %s ", cwd);
 }
 
+char * remove_spaces(char * input){
+	int i;
+	for (i = 0; i < strlen(input); i++){
+		if (isspace(input[i])){
+			input[i] = 0;
+		}
+	}
+	return input;
+}
+
 char ** parse( char * line, char * delimiter){
   char * curr = line;
-  char ** args = malloc(100);
+  char ** args = malloc(256);
+  remove_spaces(curr);
   int x;
   for (x = 0; curr != NULL; x++){
     args[x] = strsep (&curr, delimiter);
