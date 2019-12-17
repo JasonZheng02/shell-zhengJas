@@ -32,13 +32,13 @@ main.c
 	Returns: Double pointer to the beginning of the parsed line
 
 	Uses remove_spaces()
-  Parse on delimiters
-	====================*/
+	Parse on delimiters
+	
   
   	/*======== void execArgs() ==========
 	Inputs:  char ** args 
 	Returns: N/A
 
 	Fork
-  Parent waits for child to finish executing args
+	Parent waits for child to finish executing args
 	====================*/
