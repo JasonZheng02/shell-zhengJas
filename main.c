@@ -14,12 +14,12 @@ void printDir(){
 
 char * remove_spaces(char * input){
 	if (isspace(input[0])){
-		input++
+		input++;
 	}
 	if (isspace(input[strlen(input) - 1]){  
 		input[strlen(input) - 1] = 0;
 	}
-	return input
+	return input;
 }
 
 char ** parse( char * line, char * delimiter){
