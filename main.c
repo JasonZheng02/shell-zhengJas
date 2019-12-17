@@ -90,8 +90,11 @@ int main(){
 		} 
 		if (strstr(input, ";") != NULL){
 			cmds = parse(input, ";");
+			}
 		}
-		cmds = parse(input, "");
+		else{
+			cmds = parse(input, "");
+		}
 		int i;
 		for (int i = 0; cmds[i] != NULL; i++){
 			args = parse(input, " ");
