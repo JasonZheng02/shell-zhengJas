@@ -11,14 +11,14 @@ void printDir(){
 	printf("\nDirectory: %s ", cwd);
 }
 
-char * remove_spaces(char * input) {
-	if (input[0] == " ") {
+char * remove_spaces(char * input){
+	if (strcmp(input[0], " ") == 0){
 		input++;
 	}
-	if (input[strlen(input) - 1] == " ") {
+	if (strcmp(input[strlen(input) - 1], " ") == 0){
 		input[strlen(input) - 1] = 0;
 	}
-	return input;
+	return &input;
 }
 
 char ** parse( char * line, char * delimiter){
