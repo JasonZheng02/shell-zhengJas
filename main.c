@@ -76,6 +76,7 @@ int main(){
 	char input[512];
 	char ** args;
 	char ** cmds;
+	char ** parsed;
 	while (1){
 		printDir();
 		fgets(input, 512, stdin);
@@ -84,7 +85,8 @@ int main(){
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
 			args = parse(cmds[i], " ");
-			execArgs(args);
+			parsed = parse(cmds[i], "|");
+			execPipedArgs(args, parsed));
 		}
 	}
 }
