@@ -34,7 +34,59 @@ void execArgs(char ** args){
 	}
 	return;
 }
-	
+
+void execPipedArgs(char** args, char** parsedargs) { 
+    int fds[2];  
+    int pid1, pid2; 
+	int READ = 0;
+	int WRITE = 1;
+  
+    if (pipe(fds) < 0){ 
+        printf("\nPipe failed"); 
+    }
+    pid1 = fork();
+    if (pid1 < 0){ 
+        printf("\n Failed Fork"); 
+    } 
+    if (pid1 == 0){ 
+        close(fds[READ]); 
+        dup2(fds[WRITE], STDOUT_FILENO); 
+        close(fds[WRITE]); 
+		execvp(args[0], args)
+    } 
+	else{ 
+        pid2 = fork(); 
+        if (pid2 < 0){ 
+            printf("\nFailed Fork"); 
+        } 
+        if (pid2 == 0){ 
+            close(fds[WRITE]); 
+            dup2(fds[READ], STDIN_FILENO); 
+            close(fds[READ]); 
+            execvp(parsedargs[0], args)
+        } 
+		else{ 
+			wait(NULL); 
+            wait(NULL); 
+        } 
+    } 
+} 
+
+int ifPipe(char* str, char** strpiped){ 
+    int i; 
+    for (i = 0; i < 2; i++) { 
+        strpiped[i] = strsep(&str, "|"); 
+        if (strpiped[i] == NULL) 
+            break; 
+    } 
+  
+    if (strpiped[1] == NULL) 
+        return 0;
+    else { 
+        return 1; 
+    } 
+} 
+
 int main(){
 	char input[512];
 	char ** args;
@@ -46,7 +98,9 @@ int main(){
 		cmds = parse(input, ";");
 		int i;
 		for (i = 0; cmds[i] != NULL; i ++){
-			args = parse(cmds[i], "");
+			args = parse(cmds[i], " ");
+			if (ifPipe(input, args) == 1){
+				execPipedArgs
 			execArgs(args);
 		}
 	}
